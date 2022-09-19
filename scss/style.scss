@@ -94,10 +94,17 @@
         overflow-y: auto;
         li{
             display: flex;
-            font-size: 17px;
+            flex-direction: column;
             position: relative;
-            align-items: center;
+            word-wrap: break-word;
             span{
+                font-size: 22px;
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            p{
+                max-width: 600px;
+                word-break: break-all;
                 position: relative;
                 background: rgb(48, 165, 163);
                 border-radius: 25px;
@@ -105,18 +112,18 @@
                 display: inline-flex;
                 font-size: 18px;
                 padding: 10px 25px;
-                margin-right: 10px;
               }
               
               &::before {
                 content: "";
                 position: absolute;
-                top: 0;
+                top: 35.8px;
                 left: 0;
                 width: 22.1px;
                 height: 22.1px;
                 background: rgb(48, 165, 163);
             }
+           
           
             color: rgb(33, 38, 38);
             margin: 20px 0px;
