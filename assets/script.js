@@ -38,7 +38,7 @@ function formListener() {
     socket.on('chat message', (data) => {
         let date = new Date();
         let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '   ' + String(date.toLocaleTimeString().slice(0,-3));
-        messageList.innerHTML += `<div class='message-wrap'><li><span>${data.name} :</span> <p>${data.message}</p></li> <strong>${output}</strong></div>`;
+        messageList.innerHTML += `<div class='message-wrap'><li><span>${data.name} </span> <p>${data.message}</p></li> <strong>${output}</strong></div>`;
         messageList.scrollTo(0, messageList.scrollHeight);
         
     })
