@@ -1,3 +1,5 @@
+
+
 const socket = io();
 
 
@@ -14,7 +16,8 @@ const inputSendMessage = document.querySelector('.message-input');
 function formListener() {
     formRegistration.addEventListener('submit', (e) => {
         e.preventDefault()
-        if(inputGetName.value !== ''){
+        
+        if(inputGetName.value !== '' ){
             socket.emit('name', inputGetName.value)
             modalReg.style.display = 'none';
         }
@@ -31,14 +34,30 @@ function formListener() {
     socket.on('get users', (data) => {
         listUsers.innerHTML = '';
         data.forEach(element => {
-            listUsers.innerHTML += `<li>${element}</li>`;
+            let listItem = document.createElement('li');
+            listItem.textContent = element;
+            listUsers.append(listItem);
         });
         
     })
     socket.on('chat message', (data) => {
-        let date = new Date();
-        let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '   ' + String(date.toLocaleTimeString().slice(0,-3));
-        messageList.innerHTML += `<div class='message-wrap'><li><span>${data.name}  </span> <p>${data.message}</p></li> <strong>${output}</strong></div>`;
+        const date = new Date();
+        const output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '   ' + String(date.toLocaleTimeString().slice(0,-3));
+        const messageWrapp = document.createElement('div');
+        messageWrapp.classList.add('message-wrap');
+        const messageLi = document.createElement('li');
+        const span = document.createElement('span');
+        const paragraph = document.createElement('p');
+        const strong = document.createElement('strong');
+        span.textContent = data.name;
+        paragraph.textContent = data.message;
+        messageLi.append(span);
+        messageLi.append(paragraph);
+        strong.append(output);
+
+        messageWrapp.append(messageLi);
+        messageWrapp.append(strong);
+        messageList.append(messageWrapp);
         messageList.scrollTo(0, messageList.scrollHeight);
         
     })
