@@ -27,6 +27,8 @@ function formListener() {
     formMessageSend.addEventListener('submit', (e) => {
         e.preventDefault();
         if(inputSendMessage.value !== ''){
+            let audio = new Audio('./sentmessage.mp3');
+            audio.play();
             socket.emit('chat message', {message: inputSendMessage.value, name: inputGetName.value })
             inputSendMessage.value = '';
         }
@@ -54,6 +56,22 @@ function formListener() {
         messageLi.append(span);
         messageLi.append(paragraph);
         strong.append(output);
+        gsap.from(strong, {
+            x: 10,
+            opacity: 0,
+        })
+        gsap.to(strong, {
+            x: -5,
+            opacity: 1,
+        })
+        gsap.from(messageLi, {
+            x: -50,
+            opacity: 0,
+        })
+        gsap.to(messageLi, {
+            x: 5,
+            opacity: 1,
+        })
 
         messageWrapp.append(messageLi);
         messageWrapp.append(strong);

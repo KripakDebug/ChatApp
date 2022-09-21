@@ -88,15 +88,17 @@
         strong{
             margin-right: 20px;
             font-size: 14px;
+            opacity: 0;
             color: rgb(20, 20, 20);
         }
-       }
+    }
         overflow-y: auto;
         li{
             display: flex;
             flex-direction: column;
             position: relative;
             word-wrap: break-word;
+            opacity: 0;
             span{
                 font-size: 22px;
                 font-weight: 600;
